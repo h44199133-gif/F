@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Engineering Secret System</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Tahoma,Arial,sans-serif;
+    background:
+        radial-gradient(circle at top,#172554,#020617 65%);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* =========================
+   الخلفية الهندسية
+========================= */
+
+.engineering-bg{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
+.grid{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(96,165,250,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(96,165,250,.08) 1px,transparent 1px);
+    background-size:35px 35px;
+}
+
+.tool{
+    position:absolute;
+    font-size:28px;
+    opacity:.18;
+    animation:toolFloat 12s linear infinite;
+}
+
+.tool:nth-child(2){left:5%;top:15%}
+.tool:nth-child(3){left:85%;top:20%;animation-delay:2s}
+.tool:nth-child(4){left:15%;top:75%;animation-delay:4s}
+.tool:nth-child(5){left:75%;top:75%;animation-delay:1s}
+.tool:nth-child(6){left:45%;top:10%;animation-delay:3s}
+.tool:nth-child(7){left:55%;top:85%;animation-delay:5s}
+
+@keyframes toolFloat{
+    0%,100%{
+        transform:rotate(0deg) translateY(0);
+    }
+    50%{
+        transform:rotate(180deg) translateY(-20px);
+    }
+}
+
+/* =========================
+   القلوب والنجوم
+========================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:3;
+}
+
+.particle{
+    position:absolute;
+    bottom:-50px;
+    animation:floatUp linear infinite;
+    opacity:0;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   الكارت
+========================= */
+
+.card{
+    position:relative;
+    z-index:10;
+
+    width:min(94%,520px);
+    max-height:90vh;
+    overflow:auto;
+
+    padding:30px 25px;
+
+    border-radius:28px;
+
+    background:rgba(15,23,42,.82);
+    border:1px solid rgba(96,165,250,.3);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.55),
+        0 0 50px rgba(59,130,246,.08);
+
+    text-align:center;
+}
+
+.card::-webkit-scrollbar{
+    width:4px;
+}
+
+.card::-webkit-scrollbar-thumb{
+    background:#475569;
+    border-radius:10px;
+}
+
+/* =========================
+   الشعار
+========================= */
+
+.logo{
+    font-size:52px;
+    margin-bottom:10px;
+}
+
+.system-title{
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.system-subtitle{
+    color:#94a3b8;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+/* =========================
+   Terminal
+========================= */
+
+.terminal{
+    text-align:left;
+    direction:ltr;
+
+    background:#020617;
+
+    border:1px solid #1e3a8a;
+
+    border-radius:15px;
+
+    padding:16px;
+
+    margin-bottom:22px;
+
+    font-family:monospace;
+    font-size:13px;
+
+    color:#60a5fa;
+
+    min-height:125px;
+}
+
+.terminal .green{
+    color:#4ade80;
+}
+
+.terminal .yellow{
+    color:#facc15;
+}
+
+/* =========================
+   القفل
+========================= */
+
+.lock-icon{
+    font-size:65px;
+    margin-bottom:10px;
+
+    animation:lockFloat 2s ease-in-out infinite;
+}
+
+@keyframes lockFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+}
+
+.subtitle{
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+/* =========================
+   Input
+========================= */
+
+input{
+    width:100%;
+
+    padding:15px;
+
+    border-radius:14px;
+    border:1px solid #334155;
+    outline:none;
+
+    background:#020617;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:20px;
+
+    margin-bottom:14px;
+}
+
+input:focus{
+    border-color:#60a5fa;
+    box-shadow:0 0 20px rgba(96,165,250,.2);
+}
+
+input::placeholder{
+    color:#64748b;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+button{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+    border-radius:14px;
+
+    background:
+        linear-gradient(135deg,#2563eb,#7c3aed);
+
+    color:white;
+
+    font-size:17px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    margin-top:8px;
+}
+
+button:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(59,130,246,.3);
+}
+
+button:active{
+    transform:scale(.97);
+}
+
+/* =========================
+   Error
+========================= */
+
+.error{
+    display:none;
+
+    color:#f87171;
+
+    margin-top:14px;
+
+    font-size:14px;
+}
+
+/* =========================
+   Loading
+========================= */
+
+#loading{
+    display:none;
+}
+
+.loading-title{
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+.loading-box{
+    width:100%;
+    height:16px;
+
+    background:#020617;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid #1e3a8a;
+}
+
+.loading-bar{
+    width:0%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #8b5cf6,
+            #ec4899
+        );
+
+    transition:.2s;
+}
+
+.loading-percent{
+    margin-top:12px;
+    color:#93c5fd;
+}
+
+/* =========================
+   Countdown
+========================= */
+
+#countdown{
+    display:none;
+}
+
+.count-text{
+    color:#cbd5e1;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+#number{
+    font-size:100px;
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa,
+            #c084fc,
+            #f472b6
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    animation:countAnimation 1s ease;
+}
+
+@keyframes countAnimation{
+    0%{
+        transform:scale(1.8);
+        opacity:0;
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* =========================
+   الرسالة
+========================= */
+
+#secretMessage{
+    display:none;
+}
+
+.messageOpen{
+    animation:messageOpen .9s ease;
+}
+
+@keyframes messageOpen{
+    0%{
+        opacity:0;
+        transform:scale(.5) translateY(40px);
+    }
+
+    70%{
+        transform:scale(1.05) translateY(-5px);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.envelope{
+    font-size:65px;
+
+    animation:
+        envelopeOpen 1s ease,
+        heartbeat 1.5s ease-in-out 1s infinite;
+}
+
+@keyframes envelopeOpen{
+    from{
+        transform:rotateY(180deg) scale(.5);
+        opacity:0;
+    }
+
+    to{
+        transform:rotateY(0) scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes heartbeat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.08)}
+}
+
+.message-title{
+    font-size:26px;
+    margin:12px 0 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #93c5fd,
+            #c4b5fd,
+            #f9a8d4
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.message-box{
+    min-height:170px;
+
+    padding:22px 17px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    line-height:2;
+
+    font-size:17px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:.5s;
+}
+
+.message-number{
+    color:#64748b;
+    font-size:13px;
+    margin-top:12px;
+}
+
+/* =========================
+   مستوى الاعتذار
+========================= */
+
+.apology-title{
+    margin-top:20px;
+    font-size:13px;
+    color:#94a3b8;
+}
+
+.apology-bar{
+    width:100%;
+    height:10px;
+
+    background:#020617;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:8px;
+}
+
+.apology-fill{
+    width:100%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #3b82f6,
+            #8b5cf6,
+            #ec4899
+        );
+
+    animation:apologyPulse 2s infinite;
+}
+
+@keyframes apologyPulse{
+    50%{
+        filter:brightness(1.5);
+    }
+}
+
+/* =========================
+   Easter Egg
+========================= */
+
+#easterEgg{
+    display:none;
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:
+        rgba(34,197,94,.08);
+
+    border:1px solid rgba(34,197,94,.3);
+
+    line-height:2;
+}
+
+.easter-title{
+    color:#4ade80;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+/* =========================
+   Footer
+========================= */
+
+.footer{
+    margin-top:22px;
+
+    color:#475569;
+
+    font-size:11px;
+}
+
+.footer span{
+    color:#64748b;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:600px){
+
+    .card{
+        padding:25px 17px;
+    }
+
+    .system-title{
+        font-size:21px;
+    }
+
+    .message-title{
+        font-size:23px;
+    }
+
+    .message-box{
+        font-size:16px;
+    }
+
+    #number{
+        font-size:85px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     الخلفية
+========================= -->
+
+<div class="engineering-bg">
+
+    <div class="grid"></div>
+
+    <div class="tool">📐</div>
+    <div class="tool">⚙️</div>
+    <div class="tool">📏</div>
+    <div class="tool">🔧</div>
+    <div class="tool">📊</div>
+    <div class="tool">🧮</div>
+
+</div>
+
+<div class="particles" id="particles"></div>
+
+
+<!-- =========================
+     الكارت
+========================= -->
+
+<div class="card" id="card">
+
+    <!-- شاشة الدخول -->
+
+    <div id="login">
+
+        <div class="logo">
+            ⚙️
+        </div>
+
+        <div class="system-title">
+            ENGINEERING SECRET SYSTEM
+        </div>
+
+        <div class="system-subtitle">
+            Friendship & Apology Protocol v2.0
+        </div>
+
+
+        <div class="terminal">
+
+            <div>> INITIALIZING SYSTEM...</div>
+
+            <div class="green">
+                > ENGINEERING MODE: ON ✓
+            </div>
+
+            <div>
+                > FRIENDSHIP DATABASE: FOUND
+            </div>
+
+            <div class="yellow">
+                > SECRET MESSAGE: LOCKED 🔒
+            </div>
+
+            <div>
+                > WAITING FOR ACCESS CODE...
+            </div>
+
+        </div>
+
+
+        <div class="lock-icon">
+            🔐
+        </div>
+
+        <div class="subtitle">
+
+            النظام يحتوي على رسالة سرية جدًا
+            <br>
+
+            أدخل كود الوصول يا بشمهندس 👨‍🔧
+
+        </div>
+
+
+        <input
+            type="password"
+            id="passcode"
+            placeholder="أدخل كود الوصول"
+            autocomplete="off"
+        >
+
+
+        <button onclick="checkCode()">
+            🔓 ACCESS SYSTEM
+        </button>
+
+
+        <div class="error" id="error">
+
+            ⚠ ACCESS DENIED
+            <br>
+            الكود غير صحيح يا بشمهندس 😂
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Loading
+    ========================== -->
+
+    <div id="loading">
+
+        <div class="loading-title">
+            ⚙️ SYSTEM INITIALIZING
+        </div>
+
+        <div class="terminal">
+
+            <div id="loadText">
+                > Checking friendship data...
+            </div>
+
+        </div>
+
+        <div class="loading-box">
+
+            <div
+                class="loading-bar"
+                id="loadingBar">
+            </div>
+
+        </div>
+
+        <div
+            class="loading-percent"
+            id="loadingPercent">
+
+            0%
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         Countdown
+    ========================== -->
+
+    <div id="countdown">
+
+        <div class="count-text">
+
+            🔐 ACCESS GRANTED ✓
+            <br>
+
+            Preparing secret message...
+
+        </div>
+
+        <div id="number">
+            3
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         الرسالة
+    ========================== -->
+
+    <div id="secretMessage">
+
+        <div class="envelope">
+            💌
+        </div>
+
+        <div class="message-title">
+            ✨ ENGINEERING APOLOGY ✨
+        </div>
+
+
+        <div class="terminal">
+
+            <div class="green">
+                > ACCESS GRANTED ✓
+            </div>
+
+            <div>
+                > ERROR DETECTED: FRIENDSHIP DAMAGE
+            </div>
+
+            <div>
+                > RUNNING APOLOGY PROTOCOL...
+            </div>
+
+            <div class="yellow">
+                > APOLOGY LEVEL: 100%
+            </div>
+
+            <div class="green">
+                > SYSTEM REPAIR COMPLETE ✓
+            </div>
+
+        </div>
+
+
+        <div
+            class="message-box"
+            id="messageText">
+        </div>
+
+
+        <div
+            class="message-number"
+            id="messageNumber">
+        </div>
+
+
+        <div class="apology-title">
+
+            ❤️ APOLOGY LEVEL — 100%
+
+        </div>
+
+
+        <div class="apology-bar">
+
+            <div class="apology-fill"></div>
+
+        </div>
+
+
+        <button onclick="showRandomMessage()">
+
+            🔄 RUN ANOTHER APOLOGY
+
+        </button>
+
+
+        <button onclick="showSecret()">
+
+            🥚 SECRET ENGINEER EASTER EGG
+
+        </button>
+
+
+        <div id="easterEgg">
+
+            <div class="easter-title">
+
+                👨‍🔧 CONGRATULATIONS ENGINEER!
+
+            </div>
+
+            لقد وصلت إلى الرسالة السرية داخل النظام.
+
+            <br>
+
+            بعد كل الحسابات والمعادلات...
+
+            <br>
+
+            النتيجة النهائية:
+
+            <br><br>
+
+            <strong>
+                أنا آسف يا بشمهندس ❤️
+            </strong>
+
+            <br>
+
+            <span>
+                Friendship = ∞
+            </span>
+
+            <br>
+
+            <span>
+                Friendship Error = 0
+            </span>
+
+        </div>
+
+
+        <div class="footer">
+
+            ENGINEERING FRIENDSHIP SYSTEM v2.0
+
+            <br>
+
+            <span>
+                Designed with ❤️ & 0% seriousness 😂
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   كلمة السر الجديدة
+========================================= */
+
+const CORRECT_CODE = "بشمهندس";
+
+
+/* =========================================
+   رسائل الاعتذار
+========================================= */
+
+const messages = [
+
+`
+أنا آسف بجد، ومش مجرد كلمة بقولها وخلاص.
+<br>
+عارف إني غلطت وعارف إن تصرفاتي ضايقتك،
+<br>
+ومهما حاولت أبرر، مفيش مبرر كفاية لللي حصل.
+<br>
+أنا مقدّر زعلك، وحقك عليّا من قلبي ❤️
+`,
+
+`
+أنا آسف على كل لحظة خلتك تزعل بسببي.
+<br>
+يمكن كلمة "آسف" مش كفاية،
+بس أنا فعلًا ندمان.
+<br>
+مش عايز أخسر حد غالي بسبب تصرف مني،
+<br>
+ووعد مني إني أحاول أكون أحسن. 🤍
+`,
+
+`
+حقك عليّا يا بشمهندس...
+<br>
+أنا عارف إني كنت رخم وغلطت،
+ومش ههرب من غلطي.
+<br>
+يمكن مقدرتش أوضحلك قد إيه أنت مهم عندي،
+<br>
+لكن الحقيقة إن زعلك فارق معايا جدًا.
+<br>
+أنا آسف من قلبي ❤️
+`,
+
+`
+لو الاعتذار يقدر يرجع الوقت،
+كنت رجعت كل لحظة ضايقتك فيها.
+<br>
+أنا مش هقول إني مكنتش أقصد،
+أنا هقول الحقيقة:
+<br>
+أنا غلطت... وأنا آسف.
+<br>
+وأتمنى تديني فرصة أثبتلك إن الاعتذار ده مش مجرد كلام. 🥺❤️
+`,
+
+`
+أنا عارف إن الكلام سهل،
+وعارف إن كلمة آسف لوحدها مش هتمسح اللي حصل.
+<br>
+عشان كده أنا مش طالب منك تنسى،
+<br>
+أنا بس طالب منك تعرف إني ندمان فعلًا.
+<br>
+وحقك عليّا في كل حاجة زعلتك مني. ❤️‍🩹
+`,
+
+`
+يمكن أنا معرفتش أتصرف صح،
+ويمكن هزار أو تصرف مني وصلّك إحساس وحش.
+<br>
+لكن عمري ما كنت عايز أكون سبب في زعلك.
+<br>
+أنا آسف جدًا،
+<br>
+ومن قلبي بتمنى تسامحني. 🤍
+`,
+
+`
+أعتذر لك عن كل كلمة قلتها وكان المفروض أسكت،
+<br>
+وعن كل موقف كان المفروض أتصرف فيه بطريقة أحسن.
+<br>
+أنا غلطت، وأنا معترف بغلطتي.
+<br>
+ومهما كان الاعتذار بسيط،
+فهو خارج من قلبي فعلًا. ❤️
+`,
+
+`
+أنت تستحق اعتذار أكبر من مجرد كلمة "آسف".
+<br>
+تستحق إني أعترف بغلطتي من غير مبررات،
+<br>
+وأحاول أصلح اللي حصل بدل ما أتكلم بس.
+<br>
+أنا آسف بجد،
+<br>
+وحقك عليّا. ❤️
+`,
+
+`
+بعد كل المعادلات والحسابات الهندسية...
+<br>
+وصلنا للنتيجة النهائية:
+<br><br>
+<strong>
+أنا غلطت + أنت زعلت = لازم أعتذر 😂❤️
+</strong>
+<br><br>
+والحل الوحيد المقبول:
+<br>
+سامحني يا بشمهندس 🤍
+`,
+
+`
+⚠ ENGINEERING ERROR DETECTED!
+<br><br>
+سبب الخطأ:
+<br>
+رخامة زيادة عن الحد المسموح به هندسيًا 😂
+<br><br>
+الحل:
+<br>
+اعتذار رسمي + ندم حقيقي + محاولة عدم تكرار الخطأ ❤️
+<br><br>
+STATUS: APOLOGY SENT ✓
+`
+
+];
+
+
+let lastMessage = -1;
+
+
+/* =========================================
+   فحص كلمة السر
+========================================= */
+
+function checkCode(){
+
+    const input =
+        document.getElementById("passcode");
+
+    const error =
+        document.getElementById("error");
+
+    if(input.value.trim() === CORRECT_CODE){
+
+        error.style.display = "none";
+
+        document.getElementById("login")
+            .style.display = "none";
+
+        document.getElementById("loading")
+            .style.display = "block";
+
+        startLoading();
+
+    }else{
+
+        error.style.display = "block";
+
+        input.value = "";
+
+        input.focus();
+
+        const card =
+            document.getElementById("card");
+
+        card.animate(
+            [
+                {transform:"translateX(0)"},
+                {transform:"translateX(-10px)"},
+                {transform:"translateX(10px)"},
+                {transform:"translateX(-6px)"},
+                {transform:"translateX(0)"}
+            ],
+            {
+                duration:350
+            }
+        );
+    }
+}
+
+
+/* =========================================
+   Loading
+========================================= */
+
+function startLoading(){
+
+    let percent = 0;
+
+    const bar =
+        document.getElementById("loadingBar");
+
+    const percentText =
+        document.getElementById("loadingPercent");
+
+    const loadText =
+        document.getElementById("loadText");
+
+    const texts = [
+
+        "> Checking friendship data...",
+
+        "> Searching for mistakes...",
+
+        "> Calculating apology...",
+
+        "> Installing forgiveness protocol...",
+
+        "> Repairing friendship...",
+
+        "> Finalizing system..."
+
+    ];
+
+    const interval =
+        setInterval(() => {
+
+            percent += 2;
+
+            bar.style.width =
+                percent + "%";
+
+            percentText.textContent =
+                percent + "%";
+
+            const index =
+                Math.min(
+                    Math.floor(percent / 18),
+                    texts.length - 1
+                );
+
+            loadText.textContent =
+                texts[index];
+
+            if(percent >= 100){
+
+                clearInterval(interval);
+
+                setTimeout(
+                    startCountdown,
+                    500
+                );
+
+            }
+
+        },40);
+}
+
+
+/* =========================================
+   Countdown
+========================================= */
+
+function startCountdown(){
+
+    document.getElementById("loading")
+        .style.display = "none";
+
+    document.getElementById("countdown")
+        .style.display = "block";
+
+    let number = 3;
+
+    const numberElement =
+        document.getElementById("number");
+
+    numberElement.textContent = number;
+
+    const timer =
+        setInterval(() => {
+
+            number--;
+
+            if(number > 0){
+
+                numberElement.textContent =
+                    number;
+
+                numberElement.style.animation =
+                    "none";
+
+                void numberElement.offsetWidth;
+
+                numberElement.style.animation =
+                    "countAnimation 1s ease";
+
+            }else{
+
+                clearInterval(timer);
+
+                openMessage();
+
+            }
+
+        },1000);
+}
+
+
+/* =========================================
+   فتح الرسالة
+========================================= */
+
+function openMessage(){
+
+    document.getElementById("countdown")
+        .style.display = "none";
+
+    const message =
+        document.getElementById("secretMessage");
+
+    message.style.display = "block";
+
+    message.classList.remove("messageOpen");
+
+    void message.offsetWidth;
+
+    message.classList.add("messageOpen");
+
+    showRandomMessage();
+
+    createParticles();
+
+}
+
+
+/* =========================================
+   رسالة عشوائية
+========================================= */
+
+function showRandomMessage(){
+
+    let index;
+
+    do{
+
+        index =
+            Math.floor(
+                Math.random() * messages.length
+            );
+
+    }while(
+        index === lastMessage &&
+        messages.length > 1
+    );
+
+    lastMessage = index;
+
+    const box =
+        document.getElementById("messageText");
+
+    const number =
+        document.getElementById("messageNumber");
+
+    box.style.opacity = "0";
+
+    box.style.transform =
+        "scale(.95)";
+
+    setTimeout(() => {
+
+        box.innerHTML =
+            messages[index];
+
+        number.textContent =
+            "💌 APOLOGY MESSAGE " +
+            (index + 1) +
+            " / " +
+            messages.length;
+
+        box.style.opacity = "1";
+
+        box.style.transform =
+            "scale(1)";
+
+    },250);
+
+    createParticles();
+
+}
+
+
+/* =========================================
+   Easter Egg
+========================================= */
+
+function showSecret(){
+
+    const egg =
+        document.getElementById("easterEgg");
+
+    if(
+        egg.style.display === "block"
+    ){
+
+        egg.style.display = "none";
+
+    }else{
+
+        egg.style.display = "block";
+
+        createParticles();
+
+    }
+
+}
+
+
+/* =========================================
+   قلوب ونجوم
+========================================= */
+
+function createParticles(){
+
+    const container =
+        document.getElementById("particles");
+
+    const symbols = [
+        "❤️",
+        "💕",
+        "💖",
+        "💙",
+        "💜",
+        "🤍",
+        "⭐",
+        "✨",
+        "⚙️",
+        "📐"
+    ];
+
+    for(let i = 0; i < 20; i++){
+
+        const particle =
+            document.createElement("div");
+
+        particle.className =
+            "particle";
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        particle.style.left =
+            Math.random() * 100 + "%";
+
+        particle.style.fontSize =
+            (14 + Math.random() * 25) + "px";
+
+        particle.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        particle.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        container.appendChild(particle);
+
+        setTimeout(() => {
+
+            particle.remove();
+
+        },8000);
+
+    }
+
+}
+
+
+/* =========================================
+   Enter
+========================================= */
+
+document
+    .getElementById("passcode")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter"){
+
+                checkCode();
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
